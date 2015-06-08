@@ -1,0 +1,6 @@
+export(flexPM, cflexPM, ctflexPM)
+importFrom(splines, spline.des)
+importFrom(stats, prcomp)
+importFrom(stats, splinefun)
+S3method(predict, flexPM)
+S3method(print, flexPM)
