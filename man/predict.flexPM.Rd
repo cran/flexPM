@@ -10,8 +10,7 @@ Predicts the distribution function and simulates new data from a fitted model.
 }
 \arguments{
   \item{object}{
-an object of class \dQuote{\code{flexPM}} obtained with \code{\link{flexPM}}, 
-\code{\link{cflexPM}}, or \code{\link{ctflexPM}}.
+an object of class \dQuote{\code{flexPM}}.
 }
   \item{type}{
 the type of prediction (see \sQuote{Details}).
@@ -67,7 +66,7 @@ Paolo Frumento \email{paolo.frumento@ki.se}
 set.seed(1111); n <- 1000
 x <- runif(n)
 t <- rnorm(n, 1 + x, 1 + x)
-model <- flexPM(t ~ x + I(x^2)) 
+model <- flexPM(Surv(t) ~ x + I(x^2)) 
 # using polynomials (e.g. x^2) to achieve flexibility
 
 
@@ -97,7 +96,7 @@ abline(1,1, col = "red", lwd = 3) # true median = 1 + x
 # Simulate data from the fitted model
 
 t.sim <- predict(model, type = "sim")
-plot(sort(t.sim), sort(t)); abline(0,1)
+plot(quantile(t.sim, (1:9)/10), quantile(t, (1:9)/10)); abline(0,1)
 # if the model is good, t and t.sim should have a similar distribution
 
 
